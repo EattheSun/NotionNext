@@ -53,12 +53,14 @@ export async function getStaticPaths() {
   const { categoryOptions, allPages, NOTION_CONFIG } = await fetchGlobalAllData({
     from
   })
+  const categories = Array.isArray(categoryOptions) ? categoryOptions : []
+  const pages = Array.isArray(allPages) ? allPages : []
   const paths = []
 
-  categoryOptions?.forEach(category => {
+  categories.forEach(category => {
     // 过滤状态类型
-    const categoryPosts = allPages
-      ?.filter(page => page.type === 'Post' && page.status === 'Published')
+    const categoryPosts = pages
+      .filter(page => page.type === 'Post' && page.status === 'Published')
       .filter(
         post => post && post.category && post.category.includes(category.name)
       )

@@ -69,6 +69,42 @@ const Style = () => {
         content: none;
       }
 
+      #theme-heo .yuezhao-post-header-bg {
+        background:
+          radial-gradient(circle at 68% 10%, rgba(234, 223, 189, 0.2) 0 4.2rem, rgba(234, 223, 189, 0.08) 4.3rem 7.8rem, transparent 7.9rem),
+          linear-gradient(180deg, #ffffff 0%, #fbfcfb 58%, #f7f9fe 100%);
+      }
+
+      #theme-heo .yuezhao-post-header-bg::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(ellipse at 100% 98%, rgba(92, 104, 101, 0.2) 0%, rgba(154, 163, 159, 0.1) 22%, transparent 48%),
+          radial-gradient(ellipse at 86% 96%, rgba(92, 104, 101, 0.14) 0%, rgba(154, 163, 159, 0.08) 21%, transparent 47%),
+          radial-gradient(ellipse at 18% 100%, rgba(154, 163, 159, 0.1) 0%, transparent 36%);
+        opacity: 0.72;
+      }
+
+      #theme-heo .yuezhao-post-header-bg::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(247, 249, 254, 0.56) 86%, #f7f9fe 100%),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.22) 42%, rgba(255, 255, 255, 0.04) 100%);
+      }
+
+      #theme-heo .yuezhao-post-header #post-cover-wrapper {
+        mix-blend-mode: multiply;
+      }
+
+      #theme-heo .yuezhao-post-header .waves-area {
+        opacity: 0.45;
+      }
+
       #theme-heo .yuezhao-banner-cover {
         background:
           radial-gradient(circle at 78% 24%, rgba(234, 223, 189, 0.22), transparent 10rem),
@@ -192,13 +228,13 @@ const Style = () => {
       }
 
       #theme-heo .hover\\:bg-indigo-600:hover,
+      #theme-heo .group:hover .group-hover\\:bg-indigo-600,
       #theme-heo .hover\\:bg-blue-600:hover,
       #theme-heo .hover\\:bg-blue-500:hover,
       #theme-heo .bg-indigo-600,
       #theme-heo .bg-indigo-500,
       #theme-heo .bg-blue-600,
-      #theme-heo .bg-blue-500,
-      #theme-heo .group:hover .group-hover\\:bg-indigo-600 {
+      #theme-heo .bg-blue-500 {
         background-color: var(--yuezhao-pine) !important;
       }
 

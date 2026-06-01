@@ -44,7 +44,7 @@ const Header = props => {
         // 文章详情页特殊处理
         if (document?.querySelector('#post-bg')) {
           setFixedNav(true)
-          setTextWhite(true)
+          setTextWhite(false)
         }
       } else {
         // 向下滚动后的导航样式

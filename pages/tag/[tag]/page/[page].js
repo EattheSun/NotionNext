@@ -42,11 +42,13 @@ export async function getStaticProps({ params: { tag, page }, locale }) {
 export async function getStaticPaths() {
   const from = 'tag-page-static-path'
   const { tagOptions, allPages, NOTION_CONFIG } = await fetchGlobalAllData({ from })
+  const tags = Array.isArray(tagOptions) ? tagOptions : []
+  const pages = Array.isArray(allPages) ? allPages : []
   const paths = []
-  tagOptions?.forEach(tag => {
+  tags.forEach(tag => {
     // 过滤状态类型
-    const tagPosts = allPages
-      ?.filter(page => page.type === 'Post' && page.status === 'Published')
+    const tagPosts = pages
+      .filter(page => page.type === 'Post' && page.status === 'Published')
       .filter(post => post && post?.tags && post?.tags.includes(tag.name))
     // 处理文章页数
     const postCount = tagPosts.length
