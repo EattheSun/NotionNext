@@ -193,14 +193,6 @@ const nextConfig = {
       }
 
       return [
-        {
-          source: '/rss/feed.xml',
-          destination: '/api/rss/feed.xml'
-        },
-        {
-          source: '/:locale/rss/feed.xml',
-          destination: '/api/rss/feed.xml'
-        },
         ...langsRewrites,
         // 伪静态重写
         {
