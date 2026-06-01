@@ -203,6 +203,43 @@ const Style = () => {
         color: var(--yuezhao-muted) !important;
       }
 
+      #theme-heo .yuezhao-post-copyright ul {
+        position: relative;
+        overflow: hidden;
+        color: var(--yuezhao-muted);
+        background:
+          radial-gradient(circle at 96% 12%, rgba(234, 223, 189, 0.18), transparent 6rem),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(249, 250, 249, 0.82));
+        border-color: var(--yuezhao-line);
+        box-shadow: 0 16px 38px rgba(18, 24, 22, 0.045);
+      }
+
+      #theme-heo .yuezhao-post-copyright ul::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 1.25rem;
+        bottom: 1.25rem;
+        width: 2px;
+        background: linear-gradient(180deg, rgba(234, 223, 189, 0.18), rgba(212, 175, 94, 0.62), rgba(234, 223, 189, 0.16));
+      }
+
+      #theme-heo .yuezhao-post-copyright strong {
+        color: var(--yuezhao-ink);
+        font-weight: 700;
+      }
+
+      #theme-heo .yuezhao-post-copyright a {
+        color: var(--yuezhao-pine);
+        text-decoration-color: rgba(49, 67, 63, 0.22);
+        text-underline-offset: 0.18em;
+      }
+
+      #theme-heo .yuezhao-post-copyright a:hover {
+        color: #8f7838;
+        text-decoration-color: rgba(212, 175, 94, 0.42);
+      }
+
       #theme-heo .hover\\:border-indigo-600:hover,
       #theme-heo .hover\\:border-blue-600:hover,
       #theme-heo .border-indigo-500 {
