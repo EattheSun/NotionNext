@@ -80,10 +80,10 @@ function Banner(props) {
     <div
       id='banners'
       onClick={handleClickBanner}
-      className='hidden xl:flex xl:flex-col group h-full bg-white dark:bg-[#1e1e1e] rounded-xl border dark:border-gray-700 mb-3 relative overflow-hidden'>
+      className='yuezhao-hero-banner hidden xl:flex xl:flex-col group h-full bg-white dark:bg-[#1e1e1e] rounded-xl border dark:border-gray-700 mb-3 relative overflow-hidden'>
       <div
         id='banner-title'
-        className='z-10 flex flex-col absolute top-10 left-10'>
+        className='z-10 flex flex-col absolute top-1/2 -translate-y-1/2 left-10'>
         <div className='text-4xl font-bold mb-3  dark:text-white'>
           {siteConfig('HEO_HERO_TITLE_1', null, CONFIG)}
           <br />
@@ -102,7 +102,7 @@ function Banner(props) {
         id='banner-cover'
         style={{ backdropFilter: 'blur(15px)' }}
         className={
-          'z-20 rounded-xl overflow-hidden opacity-0 group-hover:opacity-100 duration-300 transition-all bg-[#4259efdd] dark:bg-[#dca846] dark:text-white cursor-pointer absolute w-full h-full top-0 flex justify-start items-center'
+          'yuezhao-banner-cover z-20 rounded-xl overflow-hidden opacity-0 group-hover:opacity-100 duration-300 transition-all dark:text-white cursor-pointer absolute w-full h-full top-0 flex justify-start items-center'
         }>
         <div className='ml-12 -translate-x-32 group-hover:translate-x-0 duration-300 transition-all ease-in'>
           <div className='text-7xl text-white font-extrabold'>{coverTitle}</div>
@@ -175,40 +175,34 @@ function GroupMenu() {
   const title_3 = siteConfig('HEO_HERO_CATEGORY_3', {}, CONFIG)?.title || ''
 
   return (
-    <div className='h-[165px] select-none xl:h-20 flex flex-col justify-between xl:space-y-0 xl:flex-row w-28 lg:w-48 xl:w-full xl:flex-nowrap xl:space-x-3'>
+    <div className='yuezhao-hero-menu h-[165px] select-none xl:h-20 flex flex-col justify-between xl:space-y-0 xl:flex-row w-28 lg:w-48 xl:w-full xl:flex-nowrap xl:space-x-3'>
       <SmartLink
         href={url_1}
-        className='group relative overflow-hidden bg-gradient-to-r from-blue-500 to-blue-400 flex h-20 justify-start items-center text-white rounded-xl xl:hover:w-1/2 xl:w-1/3 transition-all duration-500 ease-in'>
-        <div className='font-bold lg:text-lg  pl-5 relative -mt-2'>
+        className='yuezhao-hero-menu-item yuezhao-hero-menu-new group relative overflow-hidden flex h-20 justify-start items-center rounded-xl xl:hover:w-1/2 xl:w-1/3 transition-all duration-500 ease-in'>
+        <div className='font-bold lg:text-lg  pl-5 relative'>
           {title_1}
-          <span className='absolute -bottom-0.5 left-5 w-5 h-0.5 bg-white rounded-full'></span>
+          <span className='absolute -bottom-0.5 left-5 w-5 h-0.5 rounded-full'></span>
         </div>
-        <div className='hidden lg:block absolute right-6  duration-700 ease-in-out transition-all scale-[2] translate-y-6 rotate-12 opacity-20 group-hover:opacity-80 group-hover:scale-100 group-hover:translate-y-0 group-hover:rotate-0'>
-          <i className='fa-solid fa-star text-4xl'></i>
-        </div>
+        <div className='yuezhao-moon-phase yuezhao-moon-new hidden lg:block absolute right-6 duration-700 ease-in-out transition-all opacity-70 group-hover:opacity-100 group-hover:scale-110'></div>
       </SmartLink>
       <SmartLink
         href={url_2}
-        className='group relative overflow-hidden bg-gradient-to-r from-red-500 to-yellow-500 flex h-20 justify-start items-center text-white rounded-xl xl:hover:w-1/2 xl:w-1/3 transition-all duration-500 ease-in'>
-        <div className='font-bold lg:text-lg pl-5 relative -mt-2'>
+        className='yuezhao-hero-menu-item yuezhao-hero-menu-half group relative overflow-hidden flex h-20 justify-start items-center rounded-xl xl:hover:w-1/2 xl:w-1/3 transition-all duration-500 ease-in'>
+        <div className='font-bold lg:text-lg pl-5 relative'>
           {title_2}
-          <span className='absolute -bottom-0.5 left-5 w-5 h-0.5 bg-white rounded-full'></span>
+          <span className='absolute -bottom-0.5 left-5 w-5 h-0.5 rounded-full'></span>
         </div>
-        <div className='hidden lg:block absolute right-6  duration-700 ease-in-out transition-all scale-[2] translate-y-6 rotate-12 opacity-20 group-hover:opacity-80 group-hover:scale-100 group-hover:translate-y-0 group-hover:rotate-0'>
-          <i className='fa-solid fa-fire-flame-curved text-4xl'></i>
-        </div>
+        <div className='yuezhao-moon-phase yuezhao-moon-half hidden lg:block absolute right-6 duration-700 ease-in-out transition-all opacity-70 group-hover:opacity-100 group-hover:scale-110'></div>
       </SmartLink>
       {/* 第三个标签在小屏上不显示 */}
       <SmartLink
         href={url_3}
-        className='group relative overflow-hidden bg-gradient-to-r from-teal-300 to-cyan-300 hidden h-20 xl:flex justify-start items-center text-white rounded-xl xl:hover:w-1/2 xl:w-1/3 transition-all duration-500 ease-in'>
-        <div className='font-bold text-lg pl-5 relative -mt-2'>
+        className='yuezhao-hero-menu-item yuezhao-hero-menu-full group relative overflow-hidden hidden h-20 xl:flex justify-start items-center rounded-xl xl:hover:w-1/2 xl:w-1/3 transition-all duration-500 ease-in'>
+        <div className='font-bold text-lg pl-5 relative'>
           {title_3}
-          <span className='absolute -bottom-0.5 left-5 w-5 h-0.5 bg-white rounded-full'></span>
+          <span className='absolute -bottom-0.5 left-5 w-5 h-0.5 rounded-full'></span>
         </div>
-        <div className='absolute right-6 duration-700 ease-in-out transition-all scale-[2] translate-y-6 rotate-12 opacity-20 group-hover:opacity-80 group-hover:scale-100 group-hover:translate-y-0 group-hover:rotate-0'>
-          <i className='fa-solid fa-book-bookmark text-4xl '></i>
-        </div>
+        <div className='yuezhao-moon-phase yuezhao-moon-full absolute right-6 duration-700 ease-in-out transition-all opacity-70 group-hover:opacity-100 group-hover:scale-110'></div>
       </SmartLink>
     </div>
   )
@@ -240,18 +234,18 @@ function TopGroup(props) {
         {topPosts?.map((p, index) => {
           return (
             <SmartLink href={`${siteConfig('SUB_PATH', '')}/${p?.slug}`} key={index}>
-              <div className='cursor-pointer h-[164px] group relative flex flex-col w-52 xl:w-full overflow-hidden shadow bg-white dark:bg-black dark:text-white rounded-xl'>
+              <div className='yuezhao-recommend-card cursor-pointer h-[164px] group relative flex flex-col w-52 xl:w-full overflow-hidden shadow bg-white dark:bg-black dark:text-white rounded-xl'>
                 <LazyImage
                   priority={index === 0}
                   className='h-24 object-cover'
                   alt={p?.title}
                   src={p?.pageCoverThumbnail || siteInfo?.pageCover}
                 />
-                <div className='group-hover:text-indigo-600 dark:group-hover:text-yellow-600 line-clamp-2 overflow-hidden m-2 font-semibold'>
+                <div className='group-hover:text-[#31433f] dark:group-hover:text-[#eadfbd] line-clamp-2 overflow-hidden m-2 font-semibold'>
                   {p?.title}
                 </div>
                 {/* hover 悬浮的 ‘荐’ 字 */}
-                <div className='opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 duration-200 transition-all absolute -top-2 -left-2 bg-indigo-600 dark:bg-yellow-600  text-white rounded-xl overflow-hidden pr-2 pb-2 pl-4 pt-4 text-xs'>
+                <div className='opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 duration-200 transition-all absolute -top-2 -left-2 bg-[#31433f] dark:bg-[#d4af5e] text-white rounded-xl overflow-hidden pr-2 pb-2 pl-4 pt-4 text-xs'>
                   {locale.COMMON.RECOMMEND_BADGES}
                 </div>
               </div>

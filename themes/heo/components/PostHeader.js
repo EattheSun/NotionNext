@@ -18,7 +18,6 @@ export default function PostHeader({ post, siteInfo, isDarkMode }) {
   }
   // 文章头图
   const headerImage = post?.pageCover ? post.pageCover : siteInfo?.pageCover
-  const ANALYTICS_BUSUANZI_ENABLE = siteConfig('ANALYTICS_BUSUANZI_ENABLE')
   return (
     <div
       id='post-bg'
@@ -65,7 +64,7 @@ export default function PostHeader({ post, siteInfo, isDarkMode }) {
                   className='mr-4'
                   passHref
                   legacyBehavior>
-                  <div className='cursor-pointer font-sm font-bold px-3 py-1 rounded-lg  hover:bg-white text-white bg-blue-500 dark:bg-yellow-500 hover:text-blue-500 duration-200 '>
+                  <div className='cursor-pointer font-sm font-bold px-3 py-1 rounded-lg hover:bg-white text-white bg-[#31433f] dark:bg-[#d4af5e] hover:text-[#31433f] duration-200 '>
                     {post.category}
                   </div>
                 </SmartLink>
@@ -127,13 +126,6 @@ export default function PostHeader({ post, siteInfo, isDarkMode }) {
               </div>
             </div>
 
-            {/* 阅读统计 */}
-            {ANALYTICS_BUSUANZI_ENABLE && (
-              <div className='busuanzi_container_page_pv font-light mr-2'>
-                <i className='fa-solid fa-fire-flame-curved'></i>{' '}
-                <span className='mr-2 busuanzi_value_page_pv' />
-              </div>
-            )}
           </section>
         </div>
 

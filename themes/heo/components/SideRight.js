@@ -1,4 +1,3 @@
-import Live2D from '@/components/Live2D'
 import dynamic from 'next/dynamic'
 import { AnalyticsCard } from './AnalyticsCard'
 import Card from './Card'
@@ -52,7 +51,7 @@ export default function SideRight(props) {
         {/* 最新文章列表 */}
         <div
           className={
-            'border wow fadeInUp  hover:border-indigo-600  dark:hover:border-yellow-600 duration-200 dark:border-gray-700 dark:bg-[#1e1e1e] dark:text-white rounded-xl lg:p-6 p-4 hidden lg:block bg-white'
+            'border wow fadeInUp  hover:border-[#31433f]  dark:hover:border-[#eadfbd] duration-200 dark:border-gray-700 dark:bg-[#1e1e1e] dark:text-white rounded-xl lg:p-6 p-4 hidden lg:block bg-white'
           }>
           <LatestPostsGroupMini {...props} />
         </div>
@@ -60,12 +59,11 @@ export default function SideRight(props) {
         {rightAreaSlot}
 
         <FaceBookPage />
-        <Live2D />
 
         {/* 标签和成绩 */}
         <Card
           className={
-            'bg-white dark:bg-[#1e1e1e] dark:text-white hover:border-indigo-600  dark:hover:border-yellow-600 duration-200'
+            'bg-white dark:bg-[#1e1e1e] dark:text-white hover:border-[#31433f]  dark:hover:border-[#eadfbd] duration-200'
           }>
           <TagGroups tags={sortedTags} currentTag={currentTag} />
           <hr className='mx-1 flex border-dashed relative my-4' />

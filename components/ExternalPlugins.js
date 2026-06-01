@@ -31,11 +31,6 @@ const ExternalPlugin = props => {
     NOTION_CONFIG
   )
   const ANALYTICS_VERCEL = siteConfig('ANALYTICS_VERCEL', null, NOTION_CONFIG)
-  const ANALYTICS_BUSUANZI_ENABLE = siteConfig(
-    'ANALYTICS_BUSUANZI_ENABLE',
-    null,
-    NOTION_CONFIG
-  )
   const ADSENSE_GOOGLE_ID = siteConfig('ADSENSE_GOOGLE_ID', null, NOTION_CONFIG)
   const FACEBOOK_APP_ID = siteConfig('FACEBOOK_APP_ID', null, NOTION_CONFIG)
   const FACEBOOK_PAGE_ID = siteConfig('FACEBOOK_PAGE_ID', null, NOTION_CONFIG)
@@ -202,7 +197,6 @@ const ExternalPlugin = props => {
       {ANALYTICS_ACKEE_TRACKER && <Ackee />}
       {ANALYTICS_GOOGLE_ID && <Gtag />}
       {ANALYTICS_VERCEL && <Analytics />}
-      {ANALYTICS_BUSUANZI_ENABLE && <Busuanzi />}
       {FACEBOOK_APP_ID && FACEBOOK_PAGE_ID && <Messenger />}
       {FIREWORKS && <Fireworks />}
       {SAKURA && <Sakura />}
@@ -492,7 +486,6 @@ const Analytics = dynamic(
 const MusicPlayer = dynamic(() => import('@/components/Player'), { ssr: false })
 const Ackee = dynamic(() => import('@/components/Ackee'), { ssr: false })
 const Gtag = dynamic(() => import('@/components/Gtag'), { ssr: false })
-const Busuanzi = dynamic(() => import('@/components/Busuanzi'), { ssr: false })
 const Messenger = dynamic(() => import('@/components/FacebookMessenger'), {
   ssr: false
 })

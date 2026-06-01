@@ -398,7 +398,7 @@ const Layout404 = props => {
                 </h1>
                 <div className='dark:text-white'>请尝试站内搜索寻找文章</div>
                 <SmartLink href='/'>
-                  <button className='bg-blue-500 py-2 px-4 text-white shadow rounded-lg hover:bg-blue-600 hover:shadow-md duration-200 transition-all'>
+                  <button className='bg-[#31433f] py-2 px-4 text-white shadow rounded-lg hover:bg-[#24332f] hover:shadow-md duration-200 transition-all'>
                     回到主页
                   </button>
                 </SmartLink>
@@ -442,11 +442,11 @@ const LayoutCategoryIndex = props => {
               legacyBehavior>
               <div
                 className={
-                  'group mr-5 mb-5 flex flex-nowrap items-center border bg-white text-2xl rounded-xl dark:hover:text-white px-4 cursor-pointer py-3 hover:text-white hover:bg-indigo-600 transition-all hover:scale-110 duration-150'
+                  'group mr-5 mb-5 flex flex-nowrap items-center border bg-white text-2xl rounded-xl dark:hover:text-white px-4 cursor-pointer py-3 hover:text-white hover:bg-[#31433f] transition-all hover:scale-110 duration-150'
                 }>
                 <HashTag className={'w-5 h-5 stroke-gray-500 stroke-2'} />
                 {category.name}
-                <div className='bg-[#f1f3f8] ml-1 px-2 rounded-lg group-hover:text-indigo-600 '>
+                <div className='bg-[#f1f3f8] ml-1 px-2 rounded-lg group-hover:text-[#31433f] '>
                   {category.count}
                 </div>
               </div>
@@ -484,11 +484,11 @@ const LayoutTagIndex = props => {
               legacyBehavior>
               <div
                 className={
-                  'group flex flex-nowrap items-center border bg-white text-2xl rounded-xl dark:hover:text-white px-4 cursor-pointer py-3 hover:text-white hover:bg-indigo-600 transition-all hover:scale-110 duration-150'
+                  'group flex flex-nowrap items-center border bg-white text-2xl rounded-xl dark:hover:text-white px-4 cursor-pointer py-3 hover:text-white hover:bg-[#31433f] transition-all hover:scale-110 duration-150'
                 }>
                 <HashTag className={'w-5 h-5 stroke-gray-500 stroke-2'} />
                 {tag.name}
-                <div className='bg-[#f1f3f8] ml-1 px-2 rounded-lg group-hover:text-indigo-600 '>
+                <div className='bg-[#f1f3f8] ml-1 px-2 rounded-lg group-hover:text-[#31433f] '>
                   {tag.count}
                 </div>
               </div>
