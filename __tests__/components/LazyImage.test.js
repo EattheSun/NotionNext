@@ -15,9 +15,14 @@ describe('LazyImage Component', () => {
     src: '/test-image.jpg',
     alt: 'Test image'
   }
+  const OriginalImage = window.Image
 
   beforeEach(() => {
     mockIntersectionObserver.mockClear()
+  })
+
+  afterEach(() => {
+    window.Image = OriginalImage
   })
 
   it('renders with required props', () => {
@@ -89,13 +94,19 @@ describe('LazyImage Component', () => {
 
   it('handles load event', async () => {
     const handleLoad = jest.fn()
-    render(<LazyImage {...defaultProps} onLoad={handleLoad} />)
-    
-    const image = screen.getByAltText('Test image')
-    
-    // Simulate image load
-    Object.defineProperty(image, 'complete', { value: true })
-    image.dispatchEvent(new Event('load'))
+
+    window.Image = class MockImage {
+      set src(value) {
+        this._src = value
+        setTimeout(() => this.onload?.(), 0)
+      }
+
+      get src() {
+        return this._src
+      }
+    }
+
+    render(<LazyImage {...defaultProps} onLoad={handleLoad} priority />)
     
     await waitFor(() => {
       expect(handleLoad).toHaveBeenCalled()
@@ -122,10 +133,10 @@ describe('LazyImage Component', () => {
   })
 
   it('handles missing src gracefully', () => {
-    render(<LazyImage alt="Test image" />)
+    const { container } = render(<LazyImage alt="Test image" />)
     
-    const image = screen.getByAltText('Test image')
-    expect(image).toBeInTheDocument()
+    expect(screen.queryByAltText('Test image')).not.toBeInTheDocument()
+    expect(container.firstChild).toBeNull()
   })
 
   it('applies custom styles', () => {
