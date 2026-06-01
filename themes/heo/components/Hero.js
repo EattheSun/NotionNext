@@ -183,7 +183,7 @@ function GroupMenu() {
           {title_1}
           <span className='absolute -bottom-0.5 left-5 w-5 h-0.5 rounded-full'></span>
         </div>
-        <div className='yuezhao-moon-phase yuezhao-moon-new hidden lg:block absolute right-6 duration-700 ease-in-out transition-all opacity-70 group-hover:opacity-100 group-hover:scale-110'></div>
+        <div className='yuezhao-entry-symbol yuezhao-entry-moon hidden lg:block absolute right-6 duration-700 ease-in-out transition-all opacity-75 group-hover:opacity-100 group-hover:scale-110'></div>
       </SmartLink>
       <SmartLink
         href={url_2}
@@ -192,7 +192,7 @@ function GroupMenu() {
           {title_2}
           <span className='absolute -bottom-0.5 left-5 w-5 h-0.5 rounded-full'></span>
         </div>
-        <div className='yuezhao-moon-phase yuezhao-moon-half hidden lg:block absolute right-6 duration-700 ease-in-out transition-all opacity-70 group-hover:opacity-100 group-hover:scale-110'></div>
+        <div className='yuezhao-entry-symbol yuezhao-entry-water hidden lg:block absolute right-6 duration-700 ease-in-out transition-all opacity-75 group-hover:opacity-100 group-hover:scale-110'></div>
       </SmartLink>
       {/* 第三个标签在小屏上不显示 */}
       <SmartLink
@@ -202,7 +202,7 @@ function GroupMenu() {
           {title_3}
           <span className='absolute -bottom-0.5 left-5 w-5 h-0.5 rounded-full'></span>
         </div>
-        <div className='yuezhao-moon-phase yuezhao-moon-full absolute right-6 duration-700 ease-in-out transition-all opacity-70 group-hover:opacity-100 group-hover:scale-110'></div>
+        <div className='yuezhao-entry-symbol yuezhao-entry-mountain absolute right-6 duration-700 ease-in-out transition-all opacity-75 group-hover:opacity-100 group-hover:scale-110'></div>
       </SmartLink>
     </div>
   )

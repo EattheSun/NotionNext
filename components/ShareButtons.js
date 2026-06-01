@@ -336,7 +336,7 @@ const ShareButtons = ({ post }) => {
             return (
               <button
                 key={singleService}
-                className='cursor-pointer bg-blue-600 text-white rounded-full mx-1'>
+                className='cursor-pointer bg-[#31433f] text-white rounded-full mx-1'>
                 <a
                   target='_blank'
                   rel='noreferrer'
@@ -412,7 +412,7 @@ const ShareButtons = ({ post }) => {
                 aria-label={singleService}
                 key={singleService}
                 onClick={() => openRedirectShare('https://link.juejin.cn/?target=')}
-                className='cursor-pointer rounded-full mx-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500'>
+                className='cursor-pointer rounded-full mx-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#31433f]'>
                 <div className='w-8 h-8 rounded-full flex items-center justify-center'
                      style={{ backgroundColor: '#5dade2' }}>
                   <Image

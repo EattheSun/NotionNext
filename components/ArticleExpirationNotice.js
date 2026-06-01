@@ -42,12 +42,12 @@ export default function ArticleExpirationNotice({
   return (
     <div
       className={
-        'p-4 rounded-lg border border-blue-300 bg-blue-50 dark:bg-blue-900/20 text-gray-800 dark:text-gray-200 shadow-sm'
+        'p-4 rounded-lg border border-[#eadfbd] bg-[#faf9f5] dark:bg-[#1e1e1e] text-gray-800 dark:text-gray-200 shadow-sm'
       }>
       <div className='flex items-start'>
-        <i className='fas fa-exclamation-triangle text-blue-500 dark:text-blue-400 mt-0.5 mr-2 flex-shrink-0' />
+        <i className='fas fa-exclamation-triangle text-[#d4af5e] dark:text-[#eadfbd] mt-0.5 mr-2 flex-shrink-0' />
         <div className='ml-1'>
-          <div className='text-blue-600 dark:text-blue-400 font-medium'>
+          <div className='text-[#31433f] dark:text-[#eadfbd] font-medium'>
             {siteConfig('ARTICLE_EXPIRATION_TITLE', '温馨提醒')}
           </div>
           <div className='flex items-center mt-1 text-sm text-gray-700 dark:text-gray-300'>

@@ -136,30 +136,38 @@ const Style = () => {
         background: var(--yuezhao-moon);
       }
 
-      #theme-heo .yuezhao-moon-phase {
-        width: 2.35rem;
-        height: 2.35rem;
-        border-radius: 999px;
-        filter: drop-shadow(0 0 14px rgba(234, 223, 189, 0.36));
+      #theme-heo .yuezhao-entry-symbol {
+        width: 2.6rem;
+        height: 2.6rem;
+        filter: drop-shadow(0 0 14px rgba(234, 223, 189, 0.28));
       }
 
-      #theme-heo .yuezhao-moon-new {
+      #theme-heo .yuezhao-entry-moon {
+        border-radius: 999px;
         background:
           radial-gradient(circle at 72% 50%, #fff 0 45%, transparent 46%),
           radial-gradient(circle at 50% 50%, var(--yuezhao-moon) 0 64%, transparent 65%);
       }
 
-      #theme-heo .yuezhao-moon-half {
-        border: 1px solid rgba(212, 175, 94, 0.32);
+      #theme-heo .yuezhao-entry-water {
+        width: 3.4rem;
+        height: 2.2rem;
         background:
-          linear-gradient(90deg, var(--yuezhao-moon) 0 50%, rgba(255, 255, 255, 0.1) 51%),
-          radial-gradient(circle at 55% 52%, var(--yuezhao-moon-core), rgba(234, 223, 189, 0.18));
+          radial-gradient(ellipse at 50% 50%, rgba(234, 223, 189, 0.2) 0 22%, transparent 23%),
+          repeating-radial-gradient(ellipse at 50% 55%, rgba(212, 175, 94, 0.36) 0 1px, transparent 2px 10px);
+        border-radius: 999px;
+        opacity: 0.72;
       }
 
-      #theme-heo .yuezhao-moon-full {
+      #theme-heo .yuezhao-entry-mountain {
+        width: 3.8rem;
+        height: 2.4rem;
+        border-radius: 0;
         background:
-          radial-gradient(circle at 33% 28%, rgba(255, 255, 255, 0.86) 0 10%, transparent 11%),
-          radial-gradient(circle at 55% 52%, var(--yuezhao-moon-core) 0, var(--yuezhao-moon) 72%, rgba(234, 223, 189, 0.12) 100%);
+          linear-gradient(135deg, transparent 0 42%, rgba(166, 174, 171, 0.24) 43% 49%, transparent 50%) 0.15rem 0.45rem / 2.1rem 1.6rem no-repeat,
+          linear-gradient(25deg, transparent 0 48%, rgba(139, 151, 147, 0.28) 49% 54%, transparent 55%) 1.35rem 0.35rem / 2.4rem 1.7rem no-repeat,
+          linear-gradient(180deg, transparent 0 72%, rgba(212, 175, 94, 0.28) 73% 75%, transparent 76%);
+        opacity: 0.76;
       }
 
       #theme-heo .yuezhao-category-item {

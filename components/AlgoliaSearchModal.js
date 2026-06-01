@@ -252,14 +252,14 @@ export default function AlgoliaSearchModal({ cRef }) {
       <div
         className={`${
           isModalOpen ? 'opacity-100' : 'invisible opacity-0 translate-y-10'
-        } max-h-[80vh] flex flex-col justify-between w-full min-h-[10rem] h-full md:h-fit max-w-xl dark:bg-hexo-black-gray dark:border-gray-800 bg-white dark:bg- p-5 rounded-lg z-50 shadow border hover:border-blue-600 duration-300 transition-all `}>
+        } max-h-[80vh] flex flex-col justify-between w-full min-h-[10rem] h-full md:h-fit max-w-xl dark:bg-hexo-black-gray dark:border-gray-800 bg-white dark:bg- p-5 rounded-lg z-50 shadow border hover:border-[#31433f] duration-300 transition-all `}>
         <div className='flex justify-between items-center'>
-          <div className='text-2xl text-blue-600 dark:text-yellow-600 font-bold'>
+          <div className='text-2xl text-[#31433f] dark:text-[#d4af5e] font-bold'>
             搜索
           </div>
           <div>
             <i
-              className='text-gray-600 fa-solid fa-xmark p-1 cursor-pointer hover:text-blue-600'
+              className='text-gray-600 fa-solid fa-xmark p-1 cursor-pointer hover:text-[#31433f]'
               onClick={closeModal}></i>
           </div>
         </div>
@@ -270,7 +270,7 @@ export default function AlgoliaSearchModal({ cRef }) {
           onChange={e => handleInputChange(e)}
           onFocus={() => setIsInputFocused(true)} // 聚焦时
           onBlur={() => setIsInputFocused(false)} // 失去焦点时
-          className='text-black dark:text-gray-200 bg-gray-50 dark:bg-gray-600 outline-blue-500 w-full px-4 my-2 py-1 mb-4 border rounded-md'
+          className='text-black dark:text-gray-200 bg-gray-50 dark:bg-gray-600 outline-[#31433f] w-full px-4 my-2 py-1 mb-4 border rounded-md'
           ref={inputRef}
         />
 
@@ -295,7 +295,7 @@ export default function AlgoliaSearchModal({ cRef }) {
               onClick={() => onJumpSearchResult(index)}
               className={`cursor-pointer replace my-2 p-2 duration-100 
               rounded-lg
-              ${activeIndex === index ? 'bg-blue-600 dark:bg-yellow-600' : ''}`}>
+              ${activeIndex === index ? 'bg-[#31433f] dark:bg-[#d4af5e]' : ''}`}>
               <a
                 className={`${activeIndex === index ? ' text-white' : ' text-black dark:text-gray-300 '}`}>
                 {result.title}
@@ -364,7 +364,7 @@ function TagGroups() {
             className={'cursor-pointer inline-block whitespace-nowrap'}>
             <div
               className={
-                'flex items-center text-black dark:text-gray-300 hover:bg-blue-600 dark:hover:bg-yellow-600 hover:scale-110 hover:text-white rounded-lg px-2 py-0.5 duration-150 transition-all'
+                'flex items-center text-black dark:text-gray-300 hover:bg-[#31433f] dark:hover:bg-[#d4af5e] hover:scale-110 hover:text-white rounded-lg px-2 py-0.5 duration-150 transition-all'
               }>
               <div className='text-lg'>{tag.name} </div>
               {tag.count ? (
@@ -394,8 +394,8 @@ function Pagination(props) {
       {Array.from({ length: totalPage }, (_, i) => {
         const classNames =
           page === i
-            ? 'font-bold text-white bg-blue-600 dark:bg-yellow-600 rounded'
-            : 'hover:text-blue-600 hover:font-bold dark:text-gray-300'
+            ? 'font-bold text-white bg-[#31433f] dark:bg-[#d4af5e] rounded'
+            : 'hover:text-[#31433f] hover:font-bold dark:text-gray-300'
 
         return (
           <div
