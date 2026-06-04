@@ -313,6 +313,9 @@ function getTopPosts({ latestPosts, allNavPages }) {
 function TodayCard({ cRef, siteInfo }) {
   const router = useRouter()
   const link = siteConfig('HEO_HERO_TITLE_LINK', null, CONFIG)
+  const todayCardCover =
+    siteConfig('HEO_HERO_TODAY_CARD_COVER', siteInfo?.pageCover, CONFIG) ||
+    siteInfo?.pageCover
   const { locale } = useGlobal()
   // 卡牌是否盖住下层
   const [isCoverUp, setIsCoverUp] = useState(true)
@@ -358,11 +361,11 @@ function TodayCard({ cRef, siteInfo }) {
           isCoverUp
             ? 'opacity-100 cursor-pointer'
             : 'opacity-0 transform scale-110 pointer-events-none'
-        } shadow transition-all duration-200 today-card h-full bg-black rounded-xl relative overflow-hidden flex items-end`}>
+        } shadow transition-all duration-200 today-card h-full bg-white rounded-xl relative overflow-hidden flex items-end`}>
         {/* 卡片文字信息 */}
         <div
           id='today-card-info'
-          className='flex justify-between w-full relative text-white p-10 items-end'>
+          className='z-10 flex justify-between w-full relative text-[#171a18] p-10 items-end'>
           <div className='flex flex-col'>
             <div className='text-xs font-light'>
               {siteConfig('HEO_HERO_TITLE_4', null, CONFIG)}
@@ -375,7 +378,7 @@ function TodayCard({ cRef, siteInfo }) {
           <div
             onClick={handleClickShowMore}
             className={`'${isCoverUp ? '' : 'hidden pointer-events-none'} z-10 group flex items-center px-3 h-10 justify-center  rounded-3xl
-            glassmorphism transition-colors duration-100 `}>
+            bg-white/70 backdrop-blur-sm shadow-sm transition-colors duration-100 `}>
             <PlusSmall
               className={
                 'group-hover:rotate-180 duration-500 transition-all w-6 h-6 mr-2 bg-white rounded-full stroke-black'
@@ -390,11 +393,11 @@ function TodayCard({ cRef, siteInfo }) {
         {/* 封面图 */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={siteInfo?.pageCover}
+          src={todayCardCover}
           id='today-card-cover'
           className={`${
             isCoverUp ? '' : ' pointer-events-none'
-          } hover:scale-110 duration-1000 object-cover cursor-pointer today-card-cover absolute w-full h-full top-0`}
+          } hover:scale-110 duration-1000 object-cover cursor-pointer today-card-cover absolute z-0 w-full h-full top-0`}
         />
       </div>
     </div>

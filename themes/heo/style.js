@@ -45,8 +45,8 @@ const Style = () => {
       }
 
       .today-card-cover {
-        -webkit-mask-image: linear-gradient(to top, transparent 5%, black 70%);
-        mask-image: linear-gradient(to top, transparent 5%, black 70%);
+        -webkit-mask-image: none;
+        mask-image: none;
       }
 
       #theme-heo #nav.bg-white,
@@ -118,28 +118,60 @@ const Style = () => {
       }
 
       #theme-heo .yuezhao-hero-menu-item {
+        position: relative;
         color: var(--yuezhao-ink);
         background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.86) 44%, rgba(255, 255, 255, 0.2) 73%, rgba(255, 255, 255, 0.02) 100%),
+          var(--yuezhao-entry-bg-image) var(--yuezhao-entry-bg-position, center center) / var(--yuezhao-entry-bg-size, cover) no-repeat,
           linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 249, 0.88));
         border: 1px solid var(--yuezhao-line);
         box-shadow: 0 12px 30px rgba(18, 24, 22, 0.052);
+      }
+
+      #theme-heo .yuezhao-hero-menu-item::before {
+        content: none;
+      }
+
+      #theme-heo .yuezhao-hero-menu-item::after {
+        content: none;
       }
 
       #theme-heo .yuezhao-hero-menu-item:hover {
         border-color: var(--yuezhao-line-strong);
         background:
           radial-gradient(circle at 88% 30%, rgba(234, 223, 189, 0.16), transparent 5rem),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.82) 44%, rgba(255, 255, 255, 0.18) 73%, rgba(255, 255, 255, 0.02) 100%),
+          var(--yuezhao-entry-bg-image) var(--yuezhao-entry-bg-position, center center) / var(--yuezhao-entry-bg-size, cover) no-repeat,
           linear-gradient(135deg, #ffffff, rgba(248, 250, 249, 0.94));
+      }
+
+      #theme-heo .yuezhao-hero-menu-new {
+        --yuezhao-entry-bg-image: url('/images/yuezhao/entry-backgrounds/v5-02-row1-clean/chujian.png');
+        --yuezhao-entry-bg-position: center center;
+      }
+
+      #theme-heo .yuezhao-hero-menu-half {
+        --yuezhao-entry-bg-image: url('/images/yuezhao/entry-backgrounds/v5-02-row1-clean/wenjing.png');
+        --yuezhao-entry-bg-position: center center;
+      }
+
+      #theme-heo .yuezhao-hero-menu-full {
+        --yuezhao-entry-bg-image: url('/images/yuezhao/entry-backgrounds/v5-02-row1-clean/laici-bleed.png');
+        --yuezhao-entry-bg-position: center center;
+        --yuezhao-entry-bg-size: cover;
       }
 
       #theme-heo .yuezhao-hero-menu-item span {
         background: var(--yuezhao-moon);
       }
 
+      #theme-heo .yuezhao-hero-menu-item > div:not(.yuezhao-entry-symbol) {
+        position: relative;
+        z-index: 1;
+      }
+
       #theme-heo .yuezhao-entry-symbol {
-        width: 2.6rem;
-        height: 2.6rem;
-        filter: drop-shadow(0 0 14px rgba(234, 223, 189, 0.28));
+        display: none !important;
       }
 
       #theme-heo .yuezhao-entry-moon {

@@ -1,8 +1,6 @@
-import { ChevronDoubleRight } from '@/components/HeroIcons'
 import { useGlobal } from '@/lib/global'
 import SmartLink from '@/components/SmartLink'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
 
 /**
  * 数字翻页插件
@@ -24,80 +22,63 @@ const PaginationNumber = ({ page, totalPage }) => {
     .replace('.html', '')
   const pages = generatePages(pagePrefix, page, currentPage, totalPage)
 
-  const [value, setValue] = useState('')
-
-  const handleInputChange = event => {
-    const newValue = event.target.value.replace(/[^0-9]/g, '')
-    setValue(newValue)
-  }
-
-  /**
-   * 调到指定页
-   */
-  const jumpToPage = () => {
-    if (value) {
-      router.push(
-        value === 1 ? `${pagePrefix}/` : `${pagePrefix}/page/${value}`
-      )
-    }
-  }
-
   return (
     <>
       {/* pc端分页按钮 */}
-      <div className='hidden lg:flex justify-center items-center mt-10 font-medium text-black duration-500 dark:text-gray-300 pt-3 space-x-2 overflow-x-auto'>
+      <div className='hidden lg:grid grid-cols-[1fr_auto_1fr] items-center mt-10 font-medium text-black duration-500 dark:text-gray-300 pt-3 gap-2 overflow-x-auto'>
         {/* 上一页 */}
-        <SmartLink
-          href={{
-            pathname:
-              currentPage === 2
-                ? `${pagePrefix}/`
-                : `${pagePrefix}/page/${currentPage - 1}`,
-            query: router.query.s ? { s: router.query.s } : {}
-          }}
-          rel='prev'
-          className={`${currentPage === 1 ? 'hidden' : 'block'}`}>
-          <div className='hover:border-[#31433f] dark:hover:border-[#d4af5e] relative w-24 h-10 flex items-center transition-all duration-200 justify-center py-2 px-2 bg-white dark:bg-[#1e1e1e] border dark:border-gray-600 rounded-lg cursor-pointer group'>
-            <i className='fas fa-angle-left mr-2 transition-all duration-200 transform group-hover:-translate-x-4' />
-            <div className='absolute translate-x-4 ml-2 opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0'>
-              {locale.PAGINATION.PREV}
-            </div>
-          </div>
-        </SmartLink>
+        <div className='justify-self-start'>
+          {showPrev && (
+            <SmartLink
+              href={{
+                pathname:
+                  currentPage === 2
+                    ? `${pagePrefix}/`
+                    : `${pagePrefix}/page/${currentPage - 1}`,
+                query: router.query.s ? { s: router.query.s } : {}
+              }}
+              rel='prev'>
+              <div className='hover:border-[#31433f] dark:hover:border-[#d4af5e] relative w-24 h-10 flex items-center transition-all duration-200 justify-center py-2 px-2 bg-white dark:bg-[#1e1e1e] border dark:border-gray-600 rounded-lg cursor-pointer group'>
+                <span
+                  aria-hidden='true'
+                  className='mr-2 text-xl leading-none transition-all duration-200 transform group-hover:-translate-x-4'>
+                  ‹
+                </span>
+                <div className='absolute translate-x-4 ml-2 opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0'>
+                  {locale.PAGINATION.PREV}
+                </div>
+              </div>
+            </SmartLink>
+          )}
+        </div>
 
         {/* 分页 */}
-        <div className='flex items-center space-x-2'>
+        <div className='flex items-center justify-center space-x-2'>
           {pages}
-
-          {/* 跳转页码 */}
-          <div className='bg-white hover:bg-gray-100 dark:hover:bg-[#d4af5e]  dark:bg-[#1e1e1e]  h-10 border dark:border-gray-600 flex justify-center items-center rounded-lg group hover:border-[#31433f] transition-all duration-200'>
-            <input
-              value={value}
-              className='w-0 group-hover:w-20 group-hover:px-3 transition-all duration-200 bg-gray-100 border-none outline-none h-full rounded-lg'
-              onInput={handleInputChange}></input>
-            <div
-              onClick={jumpToPage}
-              className='cursor-pointer hover:bg-[#31433f]  dark:bg-[#1e1e1e] dark:hover:bg-[#d4af5e] hover:text-white px-4 py-2 group-hover:px-2 group-hover:mx-1 group-hover:rounded bg-white'>
-              <ChevronDoubleRight className={'w-4 h-4'} />
-            </div>
-          </div>
         </div>
 
         {/* 下一页 */}
-        <SmartLink
-          href={{
-            pathname: `${pagePrefix}/page/${currentPage + 1}`,
-            query: router.query.s ? { s: router.query.s } : {}
-          }}
-          rel='next'
-          className={`${+showNext ? 'block' : 'hidden'} `}>
-          <div className='hover:border-[#31433f] dark:hover:border-[#d4af5e] relative w-24 h-10 flex items-center transition-all duration-200 justify-center py-2 px-2 bg-white dark:bg-[#1e1e1e] border dark:border-gray-600 rounded-lg cursor-pointer group'>
-            <i className='fas fa-angle-right mr-2 transition-all duration-200 transform group-hover:translate-x-6' />
-            <div className='absolute -translate-x-10 ml-2 opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:-translate-x-2'>
-              {locale.PAGINATION.NEXT}
-            </div>
-          </div>
-        </SmartLink>
+        <div className='justify-self-end'>
+          {showNext && (
+            <SmartLink
+              href={{
+                pathname: `${pagePrefix}/page/${currentPage + 1}`,
+                query: router.query.s ? { s: router.query.s } : {}
+              }}
+              rel='next'>
+              <div className='hover:border-[#31433f] dark:hover:border-[#d4af5e] relative w-24 h-10 flex items-center transition-all duration-200 justify-center py-2 px-2 bg-white dark:bg-[#1e1e1e] border dark:border-gray-600 rounded-lg cursor-pointer group'>
+                <span
+                  aria-hidden='true'
+                  className='mr-2 text-xl leading-none transition-all duration-200 transform group-hover:translate-x-6'>
+                  ›
+                </span>
+                <div className='absolute -translate-x-10 ml-2 opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:-translate-x-2'>
+                  {locale.PAGINATION.NEXT}
+                </div>
+              </div>
+            </SmartLink>
+          )}
+        </div>
       </div>
 
       {/* 移动端分页 */}
