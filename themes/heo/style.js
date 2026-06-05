@@ -146,17 +146,17 @@ const Style = () => {
       }
 
       #theme-heo .yuezhao-hero-menu-new {
-        --yuezhao-entry-bg-image: url('/images/yuezhao/entry-backgrounds/v5-02-row1-clean/chujian.png');
+        --yuezhao-entry-bg-image: url('/images/yuezhao/entry-backgrounds/v2-modern-soft/chujian.png');
         --yuezhao-entry-bg-position: center center;
       }
 
       #theme-heo .yuezhao-hero-menu-half {
-        --yuezhao-entry-bg-image: url('/images/yuezhao/entry-backgrounds/v5-02-row1-clean/wenjing.png');
+        --yuezhao-entry-bg-image: url('/images/yuezhao/entry-backgrounds/v2-modern-soft/wenjing.png');
         --yuezhao-entry-bg-position: center center;
       }
 
       #theme-heo .yuezhao-hero-menu-full {
-        --yuezhao-entry-bg-image: url('/images/yuezhao/entry-backgrounds/v5-02-row1-clean/laici-bleed.png');
+        --yuezhao-entry-bg-image: url('/images/yuezhao/entry-backgrounds/v2-modern-soft/laici.png');
         --yuezhao-entry-bg-position: center center;
         --yuezhao-entry-bg-size: cover;
       }
