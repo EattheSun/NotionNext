@@ -28,16 +28,17 @@ export function InfoCard(props) {
       <div className='flex justify-between'>
         {/* 问候语 */}
         <GreetingsWords />
-        {/* 头像 */}
-        <div
-          className={`${isSlugPage ? 'absolute right-0 -mt-8 -mr-6 hover:opacity-0 hover:scale-150 blur' : 'cursor-pointer'} justify-center items-center flex dark:text-gray-100 transform transitaion-all duration-200`}>
-          <LazyImage
-            src={siteInfo?.icon}
-            className='rounded-full'
-            width={isSlugPage ? 100 : 28}
-            alt={siteConfig('AUTHOR')}
-          />
-        </div>
+        {/* 头像仅在文章页作为虚化背景使用；首页信息卡不展示不可点击 logo */}
+        {isSlugPage && (
+          <div className='absolute right-0 -mt-8 -mr-6 hover:opacity-0 hover:scale-150 blur justify-center items-center flex dark:text-gray-100 transform transitaion-all duration-200'>
+            <LazyImage
+              src={siteInfo?.icon}
+              className='rounded-full'
+              width={100}
+              alt={siteConfig('AUTHOR')}
+            />
+          </div>
+        )}
       </div>
 
       <h2 className='text-3xl font-extrabold mt-3'>{siteConfig('AUTHOR')}</h2>
