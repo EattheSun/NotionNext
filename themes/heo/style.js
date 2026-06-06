@@ -313,6 +313,33 @@ const Style = () => {
         text-decoration-color: rgba(212, 175, 94, 0.42);
       }
 
+      html.dark #theme-heo .yuezhao-post-copyright ul {
+        color: rgba(232, 229, 220, 0.72);
+        background:
+          radial-gradient(circle at 96% 12%, rgba(212, 175, 94, 0.12), transparent 6rem),
+          linear-gradient(180deg, rgba(31, 31, 33, 0.96), rgba(24, 23, 29, 0.94));
+        border-color: rgba(234, 223, 189, 0.12);
+        box-shadow: 0 18px 46px rgba(0, 0, 0, 0.2);
+      }
+
+      html.dark #theme-heo .yuezhao-post-copyright ul::before {
+        background: linear-gradient(180deg, rgba(234, 223, 189, 0.12), rgba(212, 175, 94, 0.5), rgba(234, 223, 189, 0.1));
+      }
+
+      html.dark #theme-heo .yuezhao-post-copyright strong {
+        color: rgba(248, 247, 242, 0.94);
+      }
+
+      html.dark #theme-heo .yuezhao-post-copyright a {
+        color: rgba(234, 223, 189, 0.82);
+        text-decoration-color: rgba(234, 223, 189, 0.24);
+      }
+
+      html.dark #theme-heo .yuezhao-post-copyright a:hover {
+        color: #f3e7bf;
+        text-decoration-color: rgba(234, 223, 189, 0.5);
+      }
+
       #theme-heo .hover\\:border-indigo-600:hover,
       #theme-heo .hover\\:border-blue-600:hover,
       #theme-heo .border-indigo-500 {

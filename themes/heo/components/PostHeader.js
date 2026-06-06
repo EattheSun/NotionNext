@@ -78,10 +78,10 @@ export default function PostHeader({ post, siteInfo, isDarkMode }) {
                     href={`/tag/${encodeURIComponent(tag.name)}`}
                     passHref
                     className={
-                      'cursor-pointer inline-block text-[#707876] hover:text-[#31433f] duration-200 py-0.5 px-1 whitespace-nowrap '
+                      'group cursor-pointer inline-block text-[#707876] dark:text-[#8f9894] hover:text-[#31433f] dark:hover:text-[#eadfbd] duration-200 py-0.5 px-1 whitespace-nowrap '
                     }>
                     <div className='font-light flex items-center'>
-                      <HashTag className='text-[#9aa39f] stroke-2 mr-0.5 w-3 h-3' />{' '}
+                      <HashTag className='text-[#9aa39f] dark:text-[#8f9894] group-hover:text-[#31433f] dark:group-hover:text-[#eadfbd] stroke-2 mr-0.5 w-3 h-3 duration-200' />{' '}
                       {tag.name + (tag.count ? `(${tag.count})` : '')}{' '}
                     </div>
                   </SmartLink>
