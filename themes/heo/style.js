@@ -467,15 +467,53 @@ const Style = () => {
       }
 
       @media (max-width: 767px) {
+        html,
+        body,
+        #__next,
+        #theme-heo {
+          max-width: 100%;
+          overflow-x: hidden;
+        }
+
         #theme-heo #hero-wrapper,
         #theme-heo #post-outer-wrapper {
-          overflow-x: hidden;
+          width: 100%;
+          max-width: 100vw;
+          box-sizing: border-box;
+          overflow-x: clip;
+          padding-left: 0 !important;
+          padding-right: 0 !important;
         }
 
         #theme-heo #hero {
           display: block;
-          overflow: visible;
+          width: calc(100vw - 2rem);
+          max-width: calc(100vw - 2rem);
+          box-sizing: border-box;
+          overflow: hidden;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        #theme-heo #bannerGroup,
+        #theme-heo #banners,
+        #theme-heo .yuezhao-hero-menu,
+        #theme-heo .yuezhao-hero-menu-item,
+        #theme-heo .yuezhao-hero-menu-full,
+        #theme-heo #category-bar {
+          width: 100%;
           max-width: 100%;
+          box-sizing: border-box;
+        }
+
+        #theme-heo #post-outer-wrapper > #category-bar,
+        #theme-heo #post-outer-wrapper > #container,
+        #theme-heo #post-outer-wrapper > #posts-wrapper {
+          width: calc(100vw - 2rem);
+          max-width: calc(100vw - 2rem);
+          margin-left: auto;
+          margin-right: auto;
+          box-sizing: border-box;
         }
 
         #theme-heo .yuezhao-hero-spacer,
@@ -484,7 +522,6 @@ const Style = () => {
         }
 
         #theme-heo #bannerGroup {
-          width: 100%;
           max-width: none;
           min-width: 0;
           margin-right: 0;
@@ -513,7 +550,6 @@ const Style = () => {
         }
 
         #theme-heo .yuezhao-hero-menu {
-          width: 100%;
           height: auto;
           display: grid;
           grid-template-columns: 1fr;
@@ -524,7 +560,6 @@ const Style = () => {
         #theme-heo .yuezhao-hero-menu-item,
         #theme-heo .yuezhao-hero-menu-full {
           display: flex !important;
-          width: 100%;
           min-width: 0;
           height: 88px;
         }
@@ -541,7 +576,13 @@ const Style = () => {
         }
 
         #theme-heo #category-bar-items {
-          max-width: calc(100vw - 9.5rem);
+          flex: 1 1 auto;
+          min-width: 0;
+          max-width: none;
+        }
+
+        #theme-heo #category-bar-next {
+          flex: 0 0 auto;
         }
       }
 
