@@ -388,68 +388,160 @@ const Style = () => {
         display: none;
       }
 
-      @media (max-width: 1279px) {
+      @media (min-width: 768px) and (max-width: 1279px) {
         #theme-heo #hero {
-          display: block;
-          overflow-x: hidden;
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+          gap: 0.875rem;
+          overflow: visible;
           max-width: 100%;
+        }
+
+        #theme-heo .yuezhao-hero-spacer {
+          display: none;
         }
 
         #theme-heo #bannerGroup {
           width: 100%;
           max-width: none;
+          min-width: 0;
           margin-right: 0;
+        }
+
+        #theme-heo #banners {
+          display: flex !important;
+          height: 278px;
+          min-height: 278px;
+          margin-bottom: 0.75rem;
+        }
+
+        #theme-heo #banner-title {
+          left: 2.25rem;
+        }
+
+        #theme-heo #banner-title .text-4xl {
+          font-size: 2.25rem;
+          line-height: 1.12;
         }
 
         #theme-heo .yuezhao-hero-menu {
           width: 100%;
           height: auto;
           display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
+          grid-template-columns: repeat(3, minmax(0, 1fr));
           gap: 0.75rem;
-          margin-bottom: 0.75rem;
+          margin-bottom: 0;
         }
 
-        #theme-heo .yuezhao-hero-menu-item {
+        #theme-heo .yuezhao-hero-menu-item,
+        #theme-heo .yuezhao-hero-menu-full {
+          display: flex !important;
           width: 100%;
           min-width: 0;
+          height: 82px;
         }
 
         #theme-heo #hero-right-wrapper {
+          display: block;
           width: 100%;
           min-width: 0;
+          height: 374px;
+          position: relative;
         }
 
         #theme-heo #top-group {
-          display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 0.75rem;
-          width: 100%;
-          max-width: 100%;
-          overflow-x: hidden;
-          padding-bottom: 0.25rem;
+          display: none !important;
         }
 
-        #theme-heo .yuezhao-recommend-card {
+        #theme-heo #today-card {
+          display: flex !important;
+          position: relative;
+          top: auto;
           width: 100%;
-          min-width: 0;
+          height: 100%;
         }
 
-        #theme-heo #top-group > a {
-          display: block;
-          min-width: 0;
+        #theme-heo #card-body {
+          height: 100%;
         }
       }
 
-      @media (max-width: 639px) {
-        #theme-heo .yuezhao-hero-menu,
-        #theme-heo #top-group {
-          grid-template-columns: 1fr;
-        }
-
+      @media (max-width: 767px) {
         #theme-heo #hero-wrapper,
         #theme-heo #post-outer-wrapper {
           overflow-x: hidden;
+        }
+
+        #theme-heo #hero {
+          display: block;
+          overflow: visible;
+          max-width: 100%;
+        }
+
+        #theme-heo .yuezhao-hero-spacer,
+        #theme-heo #hero-right-wrapper {
+          display: none !important;
+        }
+
+        #theme-heo #bannerGroup {
+          width: 100%;
+          max-width: none;
+          min-width: 0;
+          margin-right: 0;
+        }
+
+        #theme-heo #banners {
+          display: flex !important;
+          height: 210px;
+          min-height: 210px;
+          margin-bottom: 0.75rem;
+        }
+
+        #theme-heo #banner-title {
+          left: 1.625rem;
+          top: 48%;
+        }
+
+        #theme-heo #banner-title .text-4xl {
+          font-size: 1.7rem;
+          line-height: 1.15;
+        }
+
+        #theme-heo #banner-title .text-xs {
+          margin-top: 0.75rem;
+          font-size: 0.68rem;
+        }
+
+        #theme-heo .yuezhao-hero-menu {
+          width: 100%;
+          height: auto;
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 0.625rem;
+          margin-bottom: 1rem;
+        }
+
+        #theme-heo .yuezhao-hero-menu-item,
+        #theme-heo .yuezhao-hero-menu-full {
+          display: flex !important;
+          width: 100%;
+          min-width: 0;
+          height: 88px;
+        }
+
+        #theme-heo #category-bar {
+          min-height: 3.5rem;
+          margin-bottom: 0.875rem;
+          padding-left: 0.875rem;
+          padding-right: 0.875rem;
+          border: 1px solid var(--yuezhao-line);
+          border-radius: 0.9375rem;
+          background: rgba(255, 255, 255, 0.92);
+          box-shadow: 0 12px 30px rgba(18, 24, 22, 0.045);
+        }
+
+        #theme-heo #category-bar-items {
+          max-width: calc(100vw - 9.5rem);
         }
       }
 

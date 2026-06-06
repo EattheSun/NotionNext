@@ -30,7 +30,7 @@ const Hero = props => {
         <BannerGroup {...props} />
 
         {/* 中间留白 */}
-        <div className='px-1.5 h-full'></div>
+        <div className='yuezhao-hero-spacer px-1.5 h-full'></div>
 
         {/* 右侧置顶文章组 */}
         <TopGroup {...props} />
