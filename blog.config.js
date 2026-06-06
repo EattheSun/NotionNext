@@ -19,6 +19,7 @@ const BLOG = {
   BIO: process.env.NEXT_PUBLIC_BIO || '当代修行者x布愿者', // 作者简介
   LINK: process.env.NEXT_PUBLIC_LINK || 'https://yuezhaolu.com', // 网站地址
   KEYWORDS: process.env.NEXT_PUBLIC_KEYWORD || '月昭, 天地', // 网站关键词 英文逗号隔开
+  AVATAR: process.env.NEXT_PUBLIC_AVATAR || '/images/yuezhao/logo/yuezhaolu-logo-512.png', // 站点头像 / 顶部Logo，Notion Config 中的 AVATAR 可覆盖
   BLOG_FAVICON: process.env.NEXT_PUBLIC_FAVICON || '/images/yuezhao/logo/favicon-256.png', // blog favicon 配置，月昭录默认使用站内品牌图标；支持在线图片，如 https://img.imesong.com/favicon.png
   BEI_AN: process.env.NEXT_PUBLIC_BEI_AN || '', // 备案号 闽ICP备XXXXXX
   BEI_AN_LINK: process.env.NEXT_PUBLIC_BEI_AN_LINK || 'https://beian.miit.gov.cn/', // 备案查询链接，如果用了萌备等备案请在这里填写
