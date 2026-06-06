@@ -97,6 +97,26 @@ const Style = () => {
           linear-gradient(90deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.22) 42%, rgba(255, 255, 255, 0.04) 100%);
       }
 
+      html.dark #theme-heo .yuezhao-post-header-bg {
+        background:
+          radial-gradient(ellipse at 18% 2%, rgba(234, 223, 189, 0.08), transparent 16rem),
+          linear-gradient(180deg, #171718 0%, #1c1c1e 56%, #18171d 100%);
+      }
+
+      html.dark #theme-heo .yuezhao-post-header-bg::before {
+        background:
+          radial-gradient(ellipse at 100% 98%, rgba(234, 223, 189, 0.1) 0%, rgba(154, 163, 159, 0.07) 22%, transparent 50%),
+          radial-gradient(ellipse at 86% 96%, rgba(92, 104, 101, 0.2) 0%, rgba(154, 163, 159, 0.08) 21%, transparent 48%),
+          radial-gradient(ellipse at 18% 100%, rgba(154, 163, 159, 0.09) 0%, transparent 38%);
+        opacity: 0.86;
+      }
+
+      html.dark #theme-heo .yuezhao-post-header-bg::after {
+        background:
+          linear-gradient(180deg, rgba(24, 23, 29, 0) 0%, rgba(24, 23, 29, 0.5) 84%, #18171d 100%),
+          linear-gradient(90deg, rgba(24, 23, 29, 0.72) 0%, rgba(24, 23, 29, 0.2) 44%, rgba(24, 23, 29, 0.04) 100%);
+      }
+
       #theme-heo .yuezhao-post-header #post-cover-wrapper {
         mix-blend-mode: multiply;
       }
@@ -238,9 +258,22 @@ const Style = () => {
         box-shadow: 0 18px 48px rgba(18, 24, 22, 0.06);
       }
 
+      html.dark #theme-heo .yuezhao-info-card {
+        background:
+          radial-gradient(circle at 88% 10%, rgba(212, 175, 94, 0.14), transparent 5.2rem),
+          linear-gradient(180deg, rgba(31, 31, 33, 0.96), rgba(24, 23, 29, 0.94));
+        border-color: rgba(234, 223, 189, 0.12);
+        box-shadow: 0 18px 48px rgba(0, 0, 0, 0.24);
+      }
+
       #theme-heo .yuezhao-info-card #announcement-content .notion,
       #theme-heo .yuezhao-info-card #announcement-content {
         color: var(--yuezhao-muted) !important;
+      }
+
+      html.dark #theme-heo .yuezhao-info-card #announcement-content .notion,
+      html.dark #theme-heo .yuezhao-info-card #announcement-content {
+        color: rgba(232, 229, 220, 0.72) !important;
       }
 
       #theme-heo .yuezhao-post-copyright ul {
