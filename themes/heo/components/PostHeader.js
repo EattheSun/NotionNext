@@ -17,10 +17,13 @@ export default function PostHeader({ post, siteInfo, isDarkMode }) {
   }
   // 文章头图
   const headerImage = post?.pageCover ? post.pageCover : siteInfo?.pageCover
+  const showPublishDate = post?.type !== 'Page' && post?.publishDay
+  const showLastEditedDate =
+    post?.lastEditedDay && post.lastEditedDay !== post?.publishDay
   return (
     <div
       id='post-bg'
-      className='yuezhao-post-header md:mb-0 -mb-5 w-full h-[30rem] relative md:flex-shrink-0 overflow-hidden bg-cover bg-center bg-no-repeat z-10'>
+      className='yuezhao-post-header md:mb-0 -mb-5 w-full h-[18.5rem] md:h-[19.5rem] lg:h-[20rem] relative md:flex-shrink-0 overflow-hidden bg-cover bg-center bg-no-repeat z-10'>
       <style jsx>{`
         .coverdiv:after {
           position: absolute;
@@ -53,7 +56,7 @@ export default function PostHeader({ post, siteInfo, isDarkMode }) {
         {/* 文章文字描述 */}
         <div
           id='post-info'
-          className='absolute top-48 z-10 flex flex-col space-y-4 lg:-mt-12 w-full max-w-[86rem] px-5'>
+          className='absolute top-[7.5rem] md:top-[8rem] lg:top-[8.5rem] z-10 flex flex-col space-y-3 w-full max-w-[86rem] px-5'>
           {/* 分类+标签 */}
           <div className='flex justify-center md:justify-start items-center gap-4'>
             {post.category && (
@@ -91,7 +94,7 @@ export default function PostHeader({ post, siteInfo, isDarkMode }) {
           </div>
 
           {/* 文章Title */}
-          <div className='max-w-5xl font-bold text-3xl lg:text-5xl md:leading-snug flex justify-center md:justify-start text-[#171a18] dark:text-white'>
+          <div className='max-w-5xl min-w-0 font-bold text-2xl md:text-3xl lg:text-5xl leading-tight md:leading-snug break-words flex justify-center md:justify-start text-[#171a18] dark:text-white'>
             {siteConfig('POST_TITLE_ICON') && (
               <NotionIcon icon={post.pageIcon} />
             )}
@@ -99,30 +102,32 @@ export default function PostHeader({ post, siteInfo, isDarkMode }) {
           </div>
 
           {/* 标题底部补充信息 */}
-          <section className='flex-wrap dark:text-gray-200 flex text-sm justify-center md:justify-start mt-4 text-[#707876] dark:text-gray-200 font-light leading-8'>
-            <div className='flex justify-center '>
+          <section className='flex-wrap dark:text-gray-200 flex text-xs md:text-sm justify-center md:justify-start mt-2 text-[#707876] dark:text-gray-200 font-light leading-6 md:leading-7'>
+            <div className='flex min-w-0 flex-wrap justify-center gap-x-2 gap-y-1 md:gap-x-3'>
               <div className='mr-2'>
                 <WordCount
                   wordCount={post.wordCount}
                   readTime={post.readTime}
                 />
               </div>
-              {post?.type !== 'Page' && (
+              {showPublishDate && (
                 <>
                   <SmartLink
                     href={`/archive#${formatDateFmt(post?.publishDate, 'yyyy-MM')}`}
                     passHref
-                    className='pl-1 mr-2 cursor-pointer hover:underline'>
+                    className='hidden md:inline-block pl-1 cursor-pointer hover:underline'>
                     <i className='fa-regular fa-calendar'></i>{' '}
-                    {post?.publishDay}
+                    发布 {post.publishDay}
                   </SmartLink>
                 </>
               )}
 
-              <div className='pl-1 mr-2'>
-                <i className='fa-regular fa-calendar-check'></i>{' '}
-                {post.lastEditedDay}
-              </div>
+              {showLastEditedDate && (
+                <div className='hidden md:block pl-1'>
+                  <i className='fa-regular fa-calendar-check'></i>{' '}
+                  更新 {post.lastEditedDay}
+                </div>
+              )}
             </div>
 
           </section>
