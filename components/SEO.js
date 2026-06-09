@@ -1,6 +1,6 @@
 import { siteConfig } from '@/lib/config'
 import { useGlobal } from '@/lib/global'
-import { loadExternalResource } from '@/lib/utils'
+import { createSiteUrl, isHttpLink, loadExternalResource, normalizeSiteUrl } from '@/lib/utils'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
@@ -13,9 +13,9 @@ import { useEffect } from 'react'
 const SEO = props => {
   const { children, siteInfo, post, NOTION_CONFIG } = props
   const PATH = siteConfig('PATH')
-  const LINK = siteConfig('LINK')
+  const LINK = normalizeSiteUrl(siteConfig('LINK'))
   const SUB_PATH = siteConfig('SUB_PATH', '')
-  let url = PATH?.length ? `${LINK}/${SUB_PATH}` : LINK
+  let url = PATH?.length ? createSiteUrl(LINK, SUB_PATH) || LINK : LINK
   let image
   const router = useRouter()
   const meta = getSEOMeta(props, router, useGlobal()?.locale)
@@ -47,14 +47,15 @@ const SEO = props => {
     keywords = post?.tags?.join(',')
   }
   if (meta) {
-    url = `${url}/${meta.slug}`
-    image = meta.image || '/bg_image.jpg'
+    url = createSiteUrl(url, meta.slug) || url
+    image = getAbsoluteImageUrl(meta.image || '/bg_image.jpg', LINK)
   }
   const TITLE = siteConfig('TITLE')
   const title = meta?.title || TITLE
   const description = meta?.description || `${siteInfo?.description}`
-  const type = meta?.type || 'website'
-  const lang = siteConfig('LANG').replace('-', '_') // Facebook OpenGraph 要 zh_CN 這樣的格式才抓得到語言
+  const type = meta?.type === 'Post' ? 'article' : meta?.type || 'website'
+  const language = router?.locale || siteConfig('LANG') || 'zh-CN'
+  const lang = language.replace('-', '_') // Facebook OpenGraph 要 zh_CN 這樣的格式才抓得到語言
   const category = meta?.category || KEYWORDS // section 主要是像是 category 這樣的分類，Facebook 用這個來抓連結的分類
   const favicon = siteConfig('BLOG_FAVICON')
   const BACKGROUND_DARK = siteConfig('BACKGROUND_DARK', '', NOTION_CONFIG)
@@ -124,13 +125,14 @@ const SEO = props => {
       )}
 
       {/* 基础SEO元数据 */}
+      <link rel='canonical' href={url} />
       <meta name='keywords' content={keywords} />
       <meta name='description' content={description} />
       <meta name='author' content={AUTHOR} />
       <meta name='generator' content='NotionNext' />
 
       {/* 语言和地区 */}
-      <meta httpEquiv='content-language' content={siteConfig('LANG')} />
+      <meta httpEquiv='content-language' content={language} />
       <meta name='geo.region' content={siteConfig('GEO_REGION', 'CN')} />
       <meta name='geo.country' content={siteConfig('GEO_COUNTRY', 'CN')} />
       {/* Open Graph 元数据 */}
@@ -147,8 +149,12 @@ const SEO = props => {
 
       {/* Twitter Card 元数据 */}
       <meta name='twitter:card' content='summary_large_image' />
-      <meta name='twitter:site' content={siteConfig('TWITTER_SITE', '@NotionNext')} />
-      <meta name='twitter:creator' content={siteConfig('TWITTER_CREATOR', '@NotionNext')} />
+      {siteConfig('TWITTER_SITE', '') && (
+        <meta name='twitter:site' content={siteConfig('TWITTER_SITE', '')} />
+      )}
+      {siteConfig('TWITTER_CREATOR', '') && (
+        <meta name='twitter:creator' content={siteConfig('TWITTER_CREATOR', '')} />
+      )}
       <meta name='twitter:title' content={title} />
       <meta name='twitter:description' content={description} />
       <meta name='twitter:image' content={image} />
@@ -175,12 +181,18 @@ const SEO = props => {
       {/* 文章特定元数据 */}
       {meta?.type === 'Post' && (
         <>
-          <meta property='article:published_time' content={meta.publishDay} />
-          <meta property='article:modified_time' content={meta.lastEditedDay} />
+          {meta.publishDay && (
+            <meta property='article:published_time' content={meta.publishDay} />
+          )}
+          {meta.lastEditedDay && (
+            <meta property='article:modified_time' content={meta.lastEditedDay} />
+          )}
           <meta property='article:author' content={AUTHOR} />
           <meta property='article:section' content={category} />
           <meta property='article:tag' content={keywords} />
-          <meta property='article:publisher' content={FACEBOOK_PAGE} />
+          {FACEBOOK_PAGE && (
+            <meta property='article:publisher' content={FACEBOOK_PAGE} />
+          )}
         </>
       )}
 
@@ -218,7 +230,7 @@ const generateStructuredData = (meta, siteInfo, url, image, author) => {
     '@type': 'WebSite',
     name: siteInfo?.title,
     description: siteInfo?.description,
-    url: siteConfig('LINK'),
+    url: normalizeSiteUrl(siteConfig('LINK')),
     author: {
       '@type': 'Person',
       name: author
@@ -228,7 +240,7 @@ const generateStructuredData = (meta, siteInfo, url, image, author) => {
       name: siteInfo?.title,
       logo: {
         '@type': 'ImageObject',
-        url: siteInfo?.icon
+        url: getAbsoluteImageUrl(siteInfo?.icon, normalizeSiteUrl(siteConfig('LINK')))
       }
     }
   }
@@ -253,7 +265,7 @@ const generateStructuredData = (meta, siteInfo, url, image, author) => {
         name: siteInfo?.title,
         logo: {
           '@type': 'ImageObject',
-          url: siteInfo?.icon
+          url: getAbsoluteImageUrl(siteInfo?.icon, normalizeSiteUrl(siteConfig('LINK')))
         }
       },
       mainEntityOfPage: {
@@ -266,6 +278,16 @@ const generateStructuredData = (meta, siteInfo, url, image, author) => {
   }
 
   return baseData
+}
+
+function getAbsoluteImageUrl(image, siteUrl) {
+  if (!image) {
+    return ''
+  }
+  if (isHttpLink(image) || image.startsWith('data:')) {
+    return image
+  }
+  return createSiteUrl(siteUrl, image) || image
 }
 
 /**
@@ -367,6 +389,9 @@ const getSEOMeta = (props, router, locale) => {
         type: 'website'
       }
     default:
+      const category = Array.isArray(post?.category)
+        ? post?.category?.[0]
+        : post?.category
       return {
         title: post
           ? `${post?.title} | ${siteInfo?.title}`
@@ -375,8 +400,10 @@ const getSEOMeta = (props, router, locale) => {
         type: post?.type,
         slug: post?.slug,
         image: post?.pageCoverThumbnail || `${siteInfo?.pageCover}`,
-        category: post?.category?.[0],
-        tags: post?.tags
+        category,
+        tags: post?.tags,
+        publishDay: post?.publishDay,
+        lastEditedDay: post?.lastEditedDay
       }
   }
 }

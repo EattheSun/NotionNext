@@ -4,6 +4,7 @@ import { siteConfig } from '@/lib/config'
 import { fetchGlobalAllData } from '@/lib/db/SiteDataApi'
 import { extractLangId, extractLangPrefix } from '@/lib/utils/pageId'
 import { getServerSideSitemap } from 'next-sitemap'
+import { createSiteUrl, normalizeSiteUrl } from '@/lib/utils'
 
 export const getServerSideProps = async ctx => {
   let fields = []
@@ -38,10 +39,7 @@ export const getServerSideProps = async ctx => {
 }
 
 function generateLocalesSitemap(link, allPages, locale) {
-  // 确保链接不以斜杠结尾
-  if (link && link.endsWith('/')) {
-    link = link.slice(0, -1)
-  }
+  link = normalizeSiteUrl(link)
 
   if (locale && locale.length > 0 && locale.indexOf('/') !== 0) {
     locale = '/' + locale
@@ -49,37 +47,37 @@ function generateLocalesSitemap(link, allPages, locale) {
   const dateNow = new Date().toISOString().split('T')[0]
   const defaultFields = [
     {
-      loc: `${link}${locale}`,
+      loc: createSiteUrl(link, locale),
       lastmod: dateNow,
       changefreq: 'daily',
       priority: '0.7'
     },
     {
-      loc: `${link}${locale}/archive`,
+      loc: createSiteUrl(link, `${locale}/archive`),
       lastmod: dateNow,
       changefreq: 'daily',
       priority: '0.7'
     },
     {
-      loc: `${link}${locale}/category`,
+      loc: createSiteUrl(link, `${locale}/category`),
       lastmod: dateNow,
       changefreq: 'daily',
       priority: '0.7'
     },
     {
-      loc: `${link}${locale}/rss/feed.xml`,
+      loc: createSiteUrl(link, `${locale}/rss/feed.xml`),
       lastmod: dateNow,
       changefreq: 'daily',
       priority: '0.7'
     },
     {
-      loc: `${link}${locale}/search`,
+      loc: createSiteUrl(link, `${locale}/search`),
       lastmod: dateNow,
       changefreq: 'daily',
       priority: '0.7'
     },
     {
-      loc: `${link}${locale}/tag`,
+      loc: createSiteUrl(link, `${locale}/tag`),
       lastmod: dateNow,
       changefreq: 'daily',
       priority: '0.7'
@@ -87,20 +85,37 @@ function generateLocalesSitemap(link, allPages, locale) {
   ]
   const postFields =
     allPages
-      ?.filter(p => p.status === BLOG.NOTION_PROPERTY_NAME.status_publish)
+      ?.filter(
+        p =>
+          p.status === BLOG.NOTION_PROPERTY_NAME.status_publish &&
+          ['Post', 'Page'].includes(p.type)
+      )
       ?.map(post => {
         const slugWithoutLeadingSlash = post?.slug.startsWith('/')
           ? post?.slug?.slice(1)
           : post.slug
+        const loc = createSiteUrl(link, `${locale}/${slugWithoutLeadingSlash}`)
+        if (!loc) {
+          return null
+        }
         return {
-          loc: `${link}${locale}/${slugWithoutLeadingSlash}`,
-          lastmod: new Date(post?.publishDay).toISOString().split('T')[0],
+          loc,
+          lastmod: getSitemapDate(post, dateNow),
           changefreq: 'daily',
           priority: '0.7'
         }
-      }) ?? []
+      })
+      ?.filter(Boolean) ?? []
 
-  return defaultFields.concat(postFields)
+  return defaultFields.filter(field => field.loc).concat(postFields)
+}
+
+function getSitemapDate(post, fallbackDate) {
+  const date = post?.lastEditedDay || post?.publishDay || fallbackDate
+  const parsedDate = new Date(date)
+  return Number.isNaN(parsedDate.getTime())
+    ? fallbackDate
+    : parsedDate.toISOString().split('T')[0]
 }
 
 function getUniqueFields(fields) {
