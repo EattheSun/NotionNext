@@ -13,8 +13,10 @@ import { useEffect } from 'react'
 const SEO = props => {
   const { children, siteInfo, post, NOTION_CONFIG } = props
   const PATH = siteConfig('PATH')
-  const LINK = normalizeSiteUrl(siteConfig('LINK'))
-  const SUB_PATH = siteConfig('SUB_PATH', '')
+  const LINK = normalizeSiteUrl(
+    siteConfig('LINK', siteInfo?.link, NOTION_CONFIG)
+  )
+  const SUB_PATH = siteConfig('SUB_PATH', '', NOTION_CONFIG)
   let url = PATH?.length ? createSiteUrl(LINK, SUB_PATH) || LINK : LINK
   let image
   const router = useRouter()
@@ -54,7 +56,7 @@ const SEO = props => {
   const title = meta?.title || TITLE
   const description = meta?.description || `${siteInfo?.description}`
   const type = meta?.type === 'Post' ? 'article' : meta?.type || 'website'
-  const language = router?.locale || siteConfig('LANG') || 'zh-CN'
+  const language = router?.locale || siteConfig('LANG', 'zh-CN', NOTION_CONFIG)
   const lang = language.replace('-', '_') // Facebook OpenGraph 要 zh_CN 這樣的格式才抓得到語言
   const category = meta?.category || KEYWORDS // section 主要是像是 category 這樣的分類，Facebook 用這個來抓連結的分類
   const favicon = siteConfig('BLOG_FAVICON')
@@ -92,7 +94,7 @@ const SEO = props => {
   )
   const FACEBOOK_PAGE = siteConfig('FACEBOOK_PAGE', null, NOTION_CONFIG)
 
-  const AUTHOR = siteConfig('AUTHOR')
+  const AUTHOR = siteConfig('AUTHOR', null, NOTION_CONFIG)
   return (
     <Head>
       <link rel='icon' href={favicon} />
@@ -200,7 +202,16 @@ const SEO = props => {
       <script
         type='application/ld+json'
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(generateStructuredData(meta, siteInfo, url, image, AUTHOR))
+          __html: JSON.stringify(
+            generateStructuredData(
+              meta,
+              siteInfo,
+              url,
+              image,
+              AUTHOR,
+              NOTION_CONFIG
+            )
+          )
         }}
       />
 
@@ -224,13 +235,23 @@ const SEO = props => {
  * @param {*} author
  * @returns
  */
-const generateStructuredData = (meta, siteInfo, url, image, author) => {
+const generateStructuredData = (
+  meta,
+  siteInfo,
+  url,
+  image,
+  author,
+  NOTION_CONFIG
+) => {
+  const siteUrl = normalizeSiteUrl(
+    siteConfig('LINK', siteInfo?.link, NOTION_CONFIG)
+  )
   const baseData = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: siteInfo?.title,
     description: siteInfo?.description,
-    url: normalizeSiteUrl(siteConfig('LINK')),
+    url: siteUrl,
     author: {
       '@type': 'Person',
       name: author
@@ -240,7 +261,7 @@ const generateStructuredData = (meta, siteInfo, url, image, author) => {
       name: siteInfo?.title,
       logo: {
         '@type': 'ImageObject',
-        url: getAbsoluteImageUrl(siteInfo?.icon, normalizeSiteUrl(siteConfig('LINK')))
+        url: getAbsoluteImageUrl(siteInfo?.icon, siteUrl)
       }
     }
   }
@@ -265,7 +286,7 @@ const generateStructuredData = (meta, siteInfo, url, image, author) => {
         name: siteInfo?.title,
         logo: {
           '@type': 'ImageObject',
-          url: getAbsoluteImageUrl(siteInfo?.icon, normalizeSiteUrl(siteConfig('LINK')))
+          url: getAbsoluteImageUrl(siteInfo?.icon, siteUrl)
         }
       },
       mainEntityOfPage: {
