@@ -19,9 +19,24 @@ const Style = () => {
         --yuezhao-line: rgba(23, 29, 27, 0.09);
         --yuezhao-line-strong: rgba(23, 29, 27, 0.16);
         --yuezhao-card: rgba(255, 255, 255, 0.88);
+        --yuezhao-card-strong: rgba(255, 255, 255, 0.96);
+        --yuezhao-card-soft: rgba(248, 250, 249, 0.88);
         --yuezhao-moon: #eadfbd;
         --yuezhao-moon-core: #f4ead0;
         --yuezhao-pine: #31433f;
+      }
+
+      html.dark #theme-heo {
+        --yuezhao-ink: rgba(248, 247, 242, 0.94);
+        --yuezhao-muted: rgba(232, 229, 220, 0.68);
+        --yuezhao-line: rgba(234, 223, 189, 0.12);
+        --yuezhao-line-strong: rgba(234, 223, 189, 0.22);
+        --yuezhao-card: rgba(31, 31, 33, 0.86);
+        --yuezhao-card-strong: rgba(38, 38, 40, 0.92);
+        --yuezhao-card-soft: rgba(24, 23, 29, 0.9);
+        --yuezhao-moon: #eadfbd;
+        --yuezhao-moon-core: #f4ead0;
+        --yuezhao-pine: #eadfbd;
       }
 
       // 公告栏中的字体固定白色
@@ -63,6 +78,22 @@ const Style = () => {
           url('/images/yuezhao/home-hero-bg-v1.png') center 42% / cover no-repeat;
         border-color: var(--yuezhao-line);
         box-shadow: 0 18px 48px rgba(18, 24, 22, 0.06);
+      }
+
+      html.dark #theme-heo .yuezhao-hero-banner {
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.12) 38%, rgba(255, 255, 255, 0) 72%),
+          url('/images/yuezhao/home-hero-bg-v1.png') center 42% / cover no-repeat;
+        border-color: var(--yuezhao-line);
+        box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+      }
+
+      html.dark #theme-heo .yuezhao-hero-banner #banner-title .text-4xl {
+        color: #171a18 !important;
+      }
+
+      html.dark #theme-heo .yuezhao-hero-banner #banner-title .text-xs {
+        color: #707876 !important;
       }
 
       #theme-heo .yuezhao-hero-banner::before {
@@ -141,9 +172,9 @@ const Style = () => {
         position: relative;
         color: var(--yuezhao-ink);
         background:
-          linear-gradient(90deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.86) 44%, rgba(255, 255, 255, 0.2) 73%, rgba(255, 255, 255, 0.02) 100%),
+          linear-gradient(90deg, var(--yuezhao-card-strong) 0%, var(--yuezhao-card) 44%, rgba(255, 255, 255, 0.2) 73%, rgba(255, 255, 255, 0.02) 100%),
           var(--yuezhao-entry-bg-image) var(--yuezhao-entry-bg-position, center center) / var(--yuezhao-entry-bg-size, cover) no-repeat,
-          linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 249, 0.88));
+          linear-gradient(135deg, var(--yuezhao-card-strong), var(--yuezhao-card-soft));
         border: 1px solid var(--yuezhao-line);
         box-shadow: 0 12px 30px rgba(18, 24, 22, 0.052);
       }
@@ -160,9 +191,27 @@ const Style = () => {
         border-color: var(--yuezhao-line-strong);
         background:
           radial-gradient(circle at 88% 30%, rgba(234, 223, 189, 0.16), transparent 5rem),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.82) 44%, rgba(255, 255, 255, 0.18) 73%, rgba(255, 255, 255, 0.02) 100%),
+          linear-gradient(90deg, var(--yuezhao-card-strong) 0%, var(--yuezhao-card) 44%, rgba(255, 255, 255, 0.18) 73%, rgba(255, 255, 255, 0.02) 100%),
           var(--yuezhao-entry-bg-image) var(--yuezhao-entry-bg-position, center center) / var(--yuezhao-entry-bg-size, cover) no-repeat,
-          linear-gradient(135deg, #ffffff, rgba(248, 250, 249, 0.94));
+          linear-gradient(135deg, var(--yuezhao-card-strong), var(--yuezhao-card-soft));
+      }
+
+      html.dark #theme-heo .yuezhao-hero-menu-item {
+        background:
+          linear-gradient(90deg, rgba(31, 31, 33, 0.94) 0%, rgba(31, 31, 33, 0.8) 46%, rgba(31, 31, 33, 0.3) 75%, rgba(31, 31, 33, 0.08) 100%),
+          var(--yuezhao-entry-bg-image) var(--yuezhao-entry-bg-position, center center) / var(--yuezhao-entry-bg-size, cover) no-repeat,
+          linear-gradient(135deg, rgba(38, 38, 40, 0.92), rgba(24, 23, 29, 0.9));
+        border-color: var(--yuezhao-line);
+        box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
+      }
+
+      html.dark #theme-heo .yuezhao-hero-menu-item:hover {
+        border-color: var(--yuezhao-line-strong);
+        background:
+          radial-gradient(circle at 88% 30%, rgba(234, 223, 189, 0.12), transparent 5rem),
+          linear-gradient(90deg, rgba(38, 38, 40, 0.95) 0%, rgba(31, 31, 33, 0.82) 46%, rgba(31, 31, 33, 0.32) 75%, rgba(31, 31, 33, 0.1) 100%),
+          var(--yuezhao-entry-bg-image) var(--yuezhao-entry-bg-position, center center) / var(--yuezhao-entry-bg-size, cover) no-repeat,
+          linear-gradient(135deg, rgba(38, 38, 40, 0.96), rgba(24, 23, 29, 0.94));
       }
 
       #theme-heo .yuezhao-hero-menu-new {
@@ -225,6 +274,12 @@ const Style = () => {
       #theme-heo .yuezhao-category-item {
         position: relative;
         background: transparent !important;
+      }
+
+      html.dark #theme-heo #category-bar {
+        background: rgba(31, 31, 33, 0.92) !important;
+        border-color: var(--yuezhao-line) !important;
+        box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22) !important;
       }
 
       #theme-heo .yuezhao-category-item::after {
