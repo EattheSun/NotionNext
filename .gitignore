@@ -7,10 +7,12 @@
 
 # testing
 /coverage
+/test-results/
 
 # next.js
 /.next/
 /out/
+*.tsbuildinfo
 
 # production
 /build
@@ -23,6 +25,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+health-report.json
 
 # local env files
 .env.local
