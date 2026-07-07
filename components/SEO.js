@@ -246,16 +246,14 @@ const generateStructuredData = (
   const siteUrl = normalizeSiteUrl(
     siteConfig('LINK', siteInfo?.link, NOTION_CONFIG)
   )
+  const authorData = getAuthorStructuredData(author, siteUrl, NOTION_CONFIG)
   const baseData = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: siteInfo?.title,
     description: siteInfo?.description,
     url: siteUrl,
-    author: {
-      '@type': 'Person',
-      name: author
-    },
+    author: authorData,
     publisher: {
       '@type': 'Organization',
       name: siteInfo?.title,
@@ -277,10 +275,7 @@ const generateStructuredData = (
       url: url,
       datePublished: meta.publishDay,
       dateModified: meta.lastEditedDay || meta.publishDay,
-      author: {
-        '@type': 'Person',
-        name: author
-      },
+      author: authorData,
       publisher: {
         '@type': 'Organization',
         name: siteInfo?.title,
@@ -299,6 +294,24 @@ const generateStructuredData = (
   }
 
   return baseData
+}
+
+function getAuthorStructuredData(author, siteUrl, NOTION_CONFIG) {
+  const sameAs = []
+  const xiaohongshu = siteConfig('CONTACT_XIAOHONGSHU', '', NOTION_CONFIG)
+  if (isHttpLink(xiaohongshu)) {
+    sameAs.push(xiaohongshu)
+  }
+
+  return {
+    '@type': 'Person',
+    name: author || '月昭',
+    alternateName: ['月昭录'],
+    url: createSiteUrl(siteUrl, 'about') || siteUrl,
+    description:
+      '月昭是个人作者；月昭录是月昭的个人品牌与内容主体。公众号、视频号、小红书三个平台账号同名「月昭录」。',
+    ...(sameAs.length > 0 ? { sameAs } : {})
+  }
 }
 
 function getAbsoluteImageUrl(image, siteUrl) {
