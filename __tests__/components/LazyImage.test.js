@@ -1,6 +1,10 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import LazyImage from '@/components/LazyImage'
 
+jest.mock('@clerk/nextjs', () => ({
+  useUser: () => ({ isLoaded: true, isSignedIn: false, user: null })
+}))
+
 // Mock IntersectionObserver
 const mockIntersectionObserver = jest.fn()
 mockIntersectionObserver.mockReturnValue({
